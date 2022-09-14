@@ -8,7 +8,7 @@ import "./Header.css";
 const Header = () => {
   let [isLogin, setIsLogin] = useState(false);
 
-  if (sessionStorage.getItem("isLogin")) {
+  if (sessionStorage.getItem("token")) {
     setIsLogin(true);
   }
 
