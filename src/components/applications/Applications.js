@@ -16,21 +16,31 @@ import Header from "../header/Header";
 
 const Applications = () => {
   let columns = ["Company", "Job Role", "Maximum Package", "Status", "Date"];
-
-  let onPageChnge = () => {};
-  let [rowsCount, setRowsCount] = useState(-1);
-  let [currentPage, setCurrentPage] = useState(-1);
+  let [totalRowsCount, setTotalRowsCount] = useState(0);
+  let [rowsCount, setRowsCount] = useState(10);
+  let [currentPage, setCurrentPage] = useState(0);
 
   let [rows, setRows] = useState([]);
 
   useEffect(() => {
     axios
-      .get(API_URL + "application", {headers : {
+      .get(API_URL + `application?limit=${rowsCount}&currentPage=${currentPage}`, {headers : {
         'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
       }})
-      .then((response) => setRows(response.data.data))
+      .then((response) => {
+        setRows(response.data.data);
+        setTotalRowsCount(response.data.totalRecords);
+      })
       .catch((error) => console.log(error));
-  }, [currentPage]);
+  }, [currentPage, rowsCount]);
+
+  let onRowPerPageChange = (event) => {
+      setRowsCount(parseInt(event.target.value));
+  }
+
+  let onPageChnge = (event, page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <Container>
@@ -60,10 +70,12 @@ const Applications = () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={rowsCount}
+                count={totalRowsCount}
                 onPageChange={onPageChnge}
                 page={currentPage}
-                rowsPerPageOptions={[10, 20, 50, 100]}
+                rowsPerPage={rowsCount}
+                rowsPerPageOptions={[100, 50, 20, 10]}
+                onRowsPerPageChange={onRowPerPageChange}
               />
             </TableRow>
           </TableFooter>
