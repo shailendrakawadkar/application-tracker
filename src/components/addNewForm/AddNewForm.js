@@ -6,11 +6,14 @@ import { Container } from "@mui/material";
 import Header from "../header/Header";
 import axios from "axios";
 import { API_URL } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 const AddNewApplication = () => {
     const mt20 = {
         marginTop : 20
     }
+  
+  let navigate = useNavigate();
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
   const [maxPackage, setMaxPackage] = useState(0);
@@ -34,7 +37,10 @@ const AddNewApplication = () => {
             }
         })
         .then((response) => {
-          console.log(response)
+          if(response.data.successful)
+          {
+            navigate('/applications');
+          }
         })
         .catch((error) => console.log(error));
     }

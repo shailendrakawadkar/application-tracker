@@ -5,7 +5,7 @@ import Login from "../login/Login";
 import Signup from "../signup/Signup";
 import "./Header.css";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 
 const Header = () => {
   let [isLogin, setIsLogin] = useState(false);
@@ -40,19 +40,19 @@ const Header = () => {
         {isLogin && (
           <ul>
             <li>
-              <IconButton
+              <Button
                 color="primary"
                 onClick={handleLogout}
                 size="small"
               >
-                <LogoutIcon />
-              </IconButton>
+                Logout
+              </Button>
             </li>
             <li>
-              <NavLink to={<AddNewApplication />}>Add New</NavLink>
+              <NavLink to="/application/add">Add New</NavLink>
             </li>
             <li>
-              <NavLink to={<AddNewApplication />}>Applications</NavLink>
+              <NavLink to="/applications">Applications</NavLink>
             </li>
           </ul>
         )}
