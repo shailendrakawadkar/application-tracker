@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/application-tracker/static/css/main.d122d873.css",
+    "main.js": "/application-tracker/static/js/main.6ed5c938.js",
+    "index.html": "/application-tracker/index.html",
+    "main.d122d873.css.map": "/application-tracker/static/css/main.d122d873.css.map",
+    "main.6ed5c938.js.map": "/application-tracker/static/js/main.6ed5c938.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d122d873.css",
+    "static/js/main.6ed5c938.js"
+  ]
+}
